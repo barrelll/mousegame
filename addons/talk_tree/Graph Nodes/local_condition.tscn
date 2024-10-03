@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckb0alxy56ncf"]
+
+[ext_resource type="Script" path="res://addons/talk_tree/Graph Nodes/local_condition.gd" id="1_fao2r"]
+
+[node name="Condition" type="HBoxContainer"]
+script = ExtResource("1_fao2r")
+
+[node name="Type" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+item_count = 2
+popup/item_0/text = "and"
+popup/item_0/id = 2
+popup/item_1/text = "or"
+popup/item_1/id = 3
+
+[node name="Right" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = " is equal to "
+
+[node name="Left" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 2
+popup/item_0/text = "True"
+popup/item_1/text = "False"
+popup/item_1/id = 1
+
+[connection signal="item_selected" from="Type" to="." method="_on_type_item_selected"]

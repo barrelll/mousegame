@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://5ngx25ns7r12"]
+
+[ext_resource type="Script" path="res://Dialogue/conversation.gd" id="1_1il1w"]
+[ext_resource type="FontFile" uid="uid://rbjyx41hknil" path="res://NESCyrillic.ttf" id="2_uccv3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v5xn"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nljje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3560f"]
+font = ExtResource("2_uccv3")
+font_size = 26
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wnei0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h14le"]
+font = ExtResource("2_uccv3")
+font_size = 20
+
+[node name="ConversationBox" type="CanvasLayer"]
+script = ExtResource("1_1il1w")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -152.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0v5xn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+offset_right = 552.0
+offset_bottom = 117.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer/Panel/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(1.84, 133)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nljje")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/Panel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="MarginContainer/Panel/MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "*Name is however long we need it to be"
+label_settings = SubResource("LabelSettings_3560f")
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Portrait" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("CanvasTexture_wnei0")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Dialogue" type="Label" parent="MarginContainer/Panel/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(435, 32)
+layout_mode = 2
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_h14le")
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0

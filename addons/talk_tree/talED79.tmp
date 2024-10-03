@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp4qiejri1wqm"]
+
+[ext_resource type="Script" path="res://addons/talk_tree/talk_tree.gd" id="1_lbjc0"]
+
+[node name="TalkTree" type="GraphEdit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_lbjc0")
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+
+[node name="Add_Node_Popup_Submenu" type="PopupMenu" parent="PopupMenu"]
+size = Vector2i(134, 100)
+item_count = 2
+item_0/text = "Dialogue Node"
+item_1/text = "Decision Node"
+item_1/id = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+
+[connection signal="connection_request" from="." to="." method="_on_connection_request"]
+[connection signal="delete_nodes_request" from="." to="." method="_on_delete_nodes_request"]
+[connection signal="id_pressed" from="PopupMenu/Add_Node_Popup_Submenu" to="." method="_on_add_node_popup_submenu_id_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1qrnj23q07n2"]
+
+[ext_resource type="Script" path="res://rpg_area.gd" id="1_0j7sl"]
+[ext_resource type="PackedScene" uid="uid://5ngx25ns7r12" path="res://Dialogue/conversation_box.tscn" id="2_gk88e"]
+[ext_resource type="PackedScene" uid="uid://c0p5sfoox3l2a" path="res://Player/player.tscn" id="3_607lc"]
+[ext_resource type="Script" path="res://Components/character_component.gd" id="4_lyfcv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p16yq"]
+size = Vector2(0.89855, 0.551045)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyjji"]
+size = Vector2(1.78458, 1.02337)
+
+[sub_resource type="QuadMesh" id="QuadMesh_147ev"]
+
+[node name="Top" type="Node2D" node_paths=PackedStringArray("Conversation", "player_character")]
+y_sort_enabled = true
+script = ExtResource("1_0j7sl")
+Conversation = NodePath("ConversationBox")
+player_character = NodePath("Player")
+
+[node name="ConversationBox" parent="." instance=ExtResource("2_gk88e")]
+text_display_speed = 0.02
+
+[node name="Player" parent="." instance=ExtResource("3_607lc")]
+
+[node name="First Blind Mouse" type="CharacterBody2D" parent="." groups=["Character"]]
+position = Vector2(384, 192)
+
+[node name="Hitbox" type="CollisionShape2D" parent="First Blind Mouse"]
+position = Vector2(0, 40)
+scale = Vector2(120.75, 203.25)
+shape = SubResource("RectangleShape2D_p16yq")
+
+[node name="Context" type="StaticBody2D" parent="First Blind Mouse"]
+scale = Vector2(120.75, 203.25)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="First Blind Mouse/Context"]
+position = Vector2(-7.89792e-09, -1.87685e-08)
+scale = Vector2(0.594, 1)
+shape = SubResource("RectangleShape2D_hyjji")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="First Blind Mouse"]
+scale = Vector2(120.75, 203.25)
+mesh = SubResource("QuadMesh_147ev")
+
+[node name="CharacterComponent" type="Node" parent="First Blind Mouse"]
+script = ExtResource("4_lyfcv")
+character_name = "First Blind Mouse"
+is_friendly = true
+
+[node name="Second Blind Mouse" type="CharacterBody2D" parent="." groups=["Character"]]
+position = Vector2(1136, 648)
+
+[node name="Hitbox" type="CollisionShape2D" parent="Second Blind Mouse"]
+position = Vector2(0, 40)
+scale = Vector2(120.75, 203.25)
+shape = SubResource("RectangleShape2D_p16yq")
+
+[node name="Context" type="StaticBody2D" parent="Second Blind Mouse"]
+scale = Vector2(120.75, 203.25)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="Second Blind Mouse/Context"]
+position = Vector2(-7.89792e-09, -1.87685e-08)
+scale = Vector2(0.594, 1)
+shape = SubResource("RectangleShape2D_hyjji")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Second Blind Mouse"]
+scale = Vector2(120.75, 203.25)
+mesh = SubResource("QuadMesh_147ev")
+
+[node name="CharacterComponent" type="Node" parent="Second Blind Mouse"]
+script = ExtResource("4_lyfcv")
+character_name = "Second Blind Mouse"
+is_friendly = true
+
+[node name="Third Blind Mouse" type="CharacterBody2D" parent="." groups=["Character"]]
+position = Vector2(744, 312)
+
+[node name="Hitbox" type="CollisionShape2D" parent="Third Blind Mouse"]
+position = Vector2(0, 40)
+scale = Vector2(120.75, 203.25)
+shape = SubResource("RectangleShape2D_p16yq")
+
+[node name="Context" type="StaticBody2D" parent="Third Blind Mouse"]
+scale = Vector2(120.75, 203.25)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="Third Blind Mouse/Context"]
+position = Vector2(-7.89792e-09, -1.87685e-08)
+scale = Vector2(0.594, 1)
+shape = SubResource("RectangleShape2D_hyjji")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Third Blind Mouse"]
+scale = Vector2(120.75, 203.25)
+mesh = SubResource("QuadMesh_147ev")
+
+[node name="CharacterComponent" type="Node" parent="Third Blind Mouse"]
+script = ExtResource("4_lyfcv")
+character_name = "Third Blind Mouse"
+is_friendly = true
+
+[connection signal="action_node" from="ConversationBox" to="." method="_on_conversation_box_action_node"]
+[connection signal="context_selection" from="Player" to="." method="_on_player_context_selection"]

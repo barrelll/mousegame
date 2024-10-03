@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dlco5kfm253gn"]
+
+[node name="Choice" type="LineEdit"]
+custom_minimum_size = Vector2(0, 20)
+theme_override_font_sizes/font_size = 12
+alignment = 2

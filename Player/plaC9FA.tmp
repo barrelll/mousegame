@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0p5sfoox3l2a"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_1mrj3"]
+[ext_resource type="Texture2D" uid="uid://cin7o3lrpnt4u" path="res://spritesheet/Mouse_bop_0000.png" id="1_fyekq"]
+[ext_resource type="Texture2D" uid="uid://bvtse04yidtk4" path="res://spritesheet/Mouse_bop_0001.png" id="2_hxv16"]
+[ext_resource type="Texture2D" uid="uid://do8ychi7l3cb2" path="res://spritesheet/Mouse_bop_0002.png" id="3_kolx0"]
+[ext_resource type="Texture2D" uid="uid://vka8hwr0krdv" path="res://spritesheet/Mouse_bop_0003.png" id="4_11mek"]
+[ext_resource type="Texture2D" uid="uid://cgr22cg7aepth" path="res://spritesheet/Mouse_bop_0004.png" id="5_cygcl"]
+[ext_resource type="Texture2D" uid="uid://cr50oaqktc0ra" path="res://spritesheet/Mouse_bop_0005.png" id="6_id6kl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35i8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fyekq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hxv16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kolx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_11mek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cygcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_id6kl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p37b6"]
+size = Vector2(123, 169)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(568, 328)
+slide_on_ceiling = false
+script = ExtResource("1_1mrj3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_35i8k")
+autoplay = "default"
+frame_progress = 0.351672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.5, -4.5)
+shape = SubResource("RectangleShape2D_p37b6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ContextPicker" type="RayCast2D" parent="."]
+target_position = Vector2(100, 0)

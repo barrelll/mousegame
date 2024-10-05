@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckmntya6bvps6"]
 
-[ext_resource type="Script" path="res://addons/talk_tree/Graph Nodes/local_condition_graph_node.gd" id="1_iqd25"]
+[ext_resource type="Script" path="res://addons/talk_tree/Graph Nodes/condition_graph_node.gd" id="1_28m87"]
 
 [node name="GraphNode" type="GraphNode"]
 offset_right = 336.0
 offset_bottom = 78.0
 mouse_filter = 1
 resizable = true
-title = "Local Condition"
+title = "Condition"
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
@@ -44,7 +44,16 @@ slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
 slot/3/draw_stylebox = true
-script = ExtResource("1_iqd25")
+slot/4/left_enabled = false
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = false
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
+script = ExtResource("1_28m87")
 
 [node name="If" type="BoxContainer" parent="."]
 layout_mode = 2
@@ -62,7 +71,7 @@ popup/item_1/id = 1
 popup/item_2/text = "or"
 popup/item_2/id = 2
 
-[node name="Right" type="LineEdit" parent="If"]
+[node name="Left" type="LineEdit" parent="If"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -70,12 +79,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = " is equal to "
 
-[node name="Left" type="OptionButton" parent="If"]
+[node name="Right" type="OptionButton" parent="If"]
 layout_mode = 2
-size_flags_horizontal = 3
+selected = 0
 item_count = 2
-popup/item_0/text = "True"
-popup/item_1/text = "False"
+popup/item_0/text = "False"
+popup/item_1/text = "True"
 popup/item_1/id = 1
 
 [node name="else_container" type="HBoxContainer" parent="."]
@@ -104,5 +113,12 @@ layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
 
+[node name="ErrorText" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Save dictionary does not have text: "
+
+[connection signal="text_changed" from="If/Left" to="." method="_on_right_text_changed"]
 [connection signal="toggled" from="HBoxContainer/is_top" to="." method="_on_is_top_toggled"]
 [connection signal="value_changed" from="HBoxContainer/SpinBox" to="." method="_on_spin_box_value_changed"]

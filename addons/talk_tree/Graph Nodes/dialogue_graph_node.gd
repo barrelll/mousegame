@@ -12,6 +12,7 @@ const dialogue_choice_node_name: String = "Choice_{id}"
 @onready var spinbox_current_value: int = 0
 
 const type: String = "Dialogue"
+var id = 0
 
 
 func save() -> Dictionary:
@@ -22,7 +23,9 @@ func save() -> Dictionary:
 
 	var save_dict = {
 		"filename": get_scene_file_path(),
-		"node_name": name,
+		"node_name": "Dialogue_Node_{id}".format({"id": id}),
+		"id": id,
+		"type": type,
 		"parent": get_parent().get_path(),
 		"pos_x": get_position_offset().x,  # Vector2 is not supported by JSON
 		"pos_y": get_position_offset().y,
@@ -41,6 +44,9 @@ func load_data(data: Variant) -> void:
 	set_text(data["text"])
 	is_top.button_pressed = data["is_top"]
 	spinbox.value = data["choice_count"]
+	size.x = data["size.x"]
+	size.y = data["size.y"]
+	id = data["id"]
 	for key in data["choice_text"].keys():
 		find_child(key, false, false).text = data["choice_text"][key]
 
@@ -67,9 +73,7 @@ func _on_spin_box_value_changed(value: float) -> void:
 func add_choice(value: float) -> void:
 	# add the dialogue choice
 	var dialogue_choice = dialogue_choice_packed_scene.instantiate()
-	dialogue_choice.name = dialogue_choice_node_name.format(
-		{"id": value}
-	)
+	dialogue_choice.name = dialogue_choice_node_name.format({"id": value})
 	add_child(dialogue_choice)
 	move_child(dialogue_choice, value)
 	# set the slot right as active for that slot...
@@ -83,19 +87,6 @@ func remove_choice(value: float) -> void:
 
 func _on_is_top_toggled(toggled_on: bool) -> void:
 	set_slot_enabled_left(0, !toggled_on)
-
-
-func export() -> Dictionary:
-	var choices = collect_choices()
-	var export_dict = {
-		"name": name,
-		"text": text.text,
-		"type": type,
-		"jump_to": "NA",
-		"choices": choices,
-		"default": is_top.button_pressed
-	}
-	return export_dict
 
 
 func collect_choices() -> Array:

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://55blbwf8rlpd"]
+
+[ext_resource type="Script" path="res://addons/talk_tree/exporter.gd" id="1_7xyiv"]
+
+[node name="Exporter" type="Node"]
+script = ExtResource("1_7xyiv")

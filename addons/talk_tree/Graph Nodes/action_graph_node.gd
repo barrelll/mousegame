@@ -2,12 +2,15 @@
 extends GraphNode
 
 const type: String = "Action"
+var id = 0
 
 
 func save() -> Dictionary:
 	var save_dict = {
 		"filename": get_scene_file_path(),
-		"node_name": name,
+		"node_name": "Action_Node_{id}".format({"id": id}),
+		"id": id,
+		"type": type,
 		"parent": get_parent().get_path(),
 		"pos_x": get_position_offset().x,  # Vector2 is not supported by JSON
 		"pos_y": get_position_offset().y,
@@ -20,14 +23,7 @@ func save() -> Dictionary:
 
 func load_data(data: Variant) -> void:
 	set_position_offset(Vector2(data["pos_x"], data["pos_y"]))
+	size.x = data["size.x"]
+	size.y = data["size.y"]
+	id = data["id"]
 	$LineEdit.set_text(data["text"])
-
-
-func export() -> Dictionary:
-	var export_dict = {
-		"name": name,
-		"text": $LineEdit.get_text(),
-		"type": type,
-		"jump_to": "NA",
-	}
-	return export_dict

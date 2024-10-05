@@ -16,6 +16,10 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TalkTreeGlobals="*res://addons/talk_tree/TalkTreeGlobals.gd"
+
 [dialogic]
 
 directories/dch_directory={}
@@ -48,7 +52,7 @@ text/autopauses={}
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg", "res://addons/talk_tree/plugin.cfg")
 
 [global_group]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cuettss7scynt"]
 
-[ext_resource type="FontFile" uid="uid://rbjyx41hknil" path="res://NESCyrillic.ttf" id="1_qhvis"]
+[ext_resource type="FontFile" uid="uid://rbjyx41hknil" path="res://Assets/Font/NESCyrillic.ttf" id="1_qhvis"]
 [ext_resource type="Script" path="res://Dialogue/choice.gd" id="2_lcxoy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6gmj"]

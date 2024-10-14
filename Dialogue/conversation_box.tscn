@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://5ngx25ns7r12"]
 
 [ext_resource type="Script" path="res://Dialogue/conversation.gd" id="1_1il1w"]
-[ext_resource type="FontFile" uid="uid://rbjyx41hknil" path="res://NESCyrillic.ttf" id="2_uccv3"]
+[ext_resource type="FontFile" uid="uid://rbjyx41hknil" path="res://Assets/Font/NESCyrillic.ttf" id="2_uccv3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v5xn"]
 bg_color = Color(0, 0, 0, 1)

@@ -12,7 +12,7 @@ var Dialogue: Label = $MarginContainer/Panel/MarginContainer/Panel/HBoxContainer
 @export_group("Settings")
 @export var text_display_speed: float = 0.01
 
-var game_state_path = "res://game_state.res"
+var game_state_path = "res://initial_game_state.res"
 var game_state: PackedDataContainer
 var game_state_dict: Dictionary
 var dialogue_tween: Tween
@@ -30,19 +30,26 @@ func _ready() -> void:
 		game_state_dict[key] = game_state[key]
 
 
-func start_conversation(character_context: String) -> void:
+func start_conversation(
+	character_context: String, area_context: String
+) -> void:
 	current_character = character_context
-	if current_character in game_state_dict:
-		Character_Name.text = current_character
-		var first = get_first_dialogue()
-		next_dialogue(first)
-	else:
+	if not current_character in game_state_dict:
 		printerr(
 			(
 				"Character context not found : %s, ignoring"
 				% character_context
 			)
 		)
+		return
+
+	if not game_state_dict[current_character][area_context]:
+		printerr("Area context not found : %s, ignoring" % area_context)
+		return
+
+	Character_Name.text = current_character
+	var first = get_first_dialogue()
+	next_dialogue(first)
 
 
 func next_dialogue(jump_to: int) -> void:

@@ -6,6 +6,8 @@ const SPEED = 300.0
 @export var player_character: CharacterBody2D
 var context : String = "Hub"
 
+func _ready() -> void:
+	print(GameStateManager.game_state)
 
 func _physics_process(_delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.

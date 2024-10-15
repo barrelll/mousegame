@@ -12,8 +12,10 @@ config_version=5
 
 config/name="MouseGame"
 config/tags=PackedStringArray("project")
-run/main_scene="res://Tests/test-dialogue.tscn"
+run/main_scene="res://Tests/test_dialogue.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/image="res://Player/spritesheet/Mouse_bop_0000.png"
 config/icon="res://icon.svg"
 
 [autoload]

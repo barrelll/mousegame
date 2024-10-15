@@ -13,7 +13,22 @@ func export() -> void:
 	var export_data = read_save_file()
 	print(export_data)
 	exported_packed_data.pack(export_data)
+	export_global_vars()
 	ResourceSaver.save(exported_packed_data, export_save_path)
+
+
+func export_global_vars() -> void:
+	var path = "res://global_vars.txt"
+	var save_file = TalkTreeGlobals.load_save_file()
+	var export_save_file = FileAccess.open(
+			path, FileAccess.WRITE
+		)
+	for global_var in save_file["Global_Vars"]:
+		var val = save_file["Global_Vars"][global_var]
+		var line = "var %s: bool = %s" % [global_var, val]
+		export_save_file.store_line(line)
+		export_save_file.seek_end()
+	export_save_file.close()
 
 
 func read_save_file() -> Dictionary:
@@ -73,6 +88,7 @@ func dialogue_node(node: Dictionary, connections: Array) -> Dictionary:
 	var ret_dict = {
 		"id": node.node_name,
 		"type": "Dialogue",
+		"text": node.text,
 		"is_root": node.is_top,
 		"jump_to": "N/A",
 		"choices": {}

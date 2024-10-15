@@ -1,7 +1,10 @@
 extends Node
 
 var game_state_path: String = "res://initial_game_state.res"
-var game_state : Dictionary = {}
+var game_state: Dictionary = {}
+
+var has_met_first_blind_mouse: bool = false
+var has_met_second_blind_mouse: bool = false
 
 
 func load_initial_state() -> void:
